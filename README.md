@@ -1,0 +1,2 @@
+# CultureRadar
+Just for school.
