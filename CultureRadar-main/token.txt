@@ -1,0 +1,4 @@
+Utilisateur : admin
+Mdp : admin
+Email : marion.bourlitio.edu@groupe-gema.com
+Token : eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MDg1NzE4NiwianRpIjoiMzNjNWIxOTQtNjMzOC00Nzc4LTliODctMTA2NWJiYmRiNTNjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzUwODU3MTg2LCJleHAiOjE3NTExMTYzODZ9.Q5nDs9CzZUOouW7Jof7kQdVagwTn_6BgeO0js9IEYDQ
