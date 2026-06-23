@@ -283,3 +283,21 @@ def delete_notification(notif_id):
     db.session.delete(notif)
     db.session.commit()
     return {"msg": "Notification supprimée"}, 200
+
+
+@events_bp.route("/import-events", methods=["GET"])
+def import_events():
+    import subprocess
+    import sys
+    try:
+        result = subprocess.run(
+            [sys.executable, "import_openagenda.py"],
+            capture_output=True, text=True, timeout=120
+        )
+        return jsonify({
+            "stdout": result.stdout,
+            "stderr": result.stderr,
+            "returncode": result.returncode
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
