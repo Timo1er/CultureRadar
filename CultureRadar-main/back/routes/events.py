@@ -312,3 +312,9 @@ def fix_db():
         return jsonify({"msg": "Colonnes corrigées !"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+@events_bp.route("/list-users", methods=["GET"])
+def list_users():
+    users = User.query.all()
+    return jsonify([{"id": u.id, "username": u.username, "is_confirmed": u.is_confirmed} for u in users])
