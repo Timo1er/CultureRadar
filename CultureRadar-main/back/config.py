@@ -7,12 +7,15 @@ load_dotenv()
 class Config:
     basedir = os.path.abspath(os.path.dirname(__file__))
     SECRET_KEY = os.getenv("SECRET_KEY")
-    SQLALCHEMY_DATABASE_URI = (
+    SQLALCHEMY_DATABASE_URI = os.getenv(
+        "DATABASE_URL",
         f"sqlite:///{os.path.join(basedir, 'instance', 'events.db')}"
     )
-    SQLALCHEMY_TRACK_MODIFICATIONS = (
-        False if os.getenv("SQLALCHEMY_TRACK_MODIFICATIONS") == "False" else True
-    )
+    # Render fournit parfois "postgres://" au lieu de "postgresql://"
+    if SQLALCHEMY_DATABASE_URI and SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+        SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
+
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
     MAIL_SERVER = "sandbox.smtp.mailtrap.io"
     MAIL_PORT = 2525
