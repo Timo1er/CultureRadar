@@ -303,10 +303,12 @@ def import_events():
 @events_bp.route("/fix-db", methods=["GET"])
 def fix_db():
     try:
-        db.engine.execute("ALTER TABLE event ALTER COLUMN genres TYPE TEXT")
-        db.engine.execute("ALTER TABLE event ALTER COLUMN title TYPE VARCHAR(500)")
-        db.engine.execute("ALTER TABLE event ALTER COLUMN cover_image TYPE VARCHAR(512)")
-        db.engine.execute("ALTER TABLE event ALTER COLUMN event_url TYPE VARCHAR(512)")
+        with db.engine.connect() as conn:
+            conn.execute(db.text("ALTER TABLE event ALTER COLUMN genres TYPE TEXT"))
+            conn.execute(db.text("ALTER TABLE event ALTER COLUMN title TYPE VARCHAR(500)"))
+            conn.execute(db.text("ALTER TABLE event ALTER COLUMN cover_image TYPE VARCHAR(512)"))
+            conn.execute(db.text("ALTER TABLE event ALTER COLUMN event_url TYPE VARCHAR(512)"))
+            conn.commit()
         return jsonify({"msg": "Colonnes corrigées !"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
