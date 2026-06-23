@@ -20,8 +20,8 @@ class Config:
     MAIL_SERVER = "sandbox.smtp.mailtrap.io"
     MAIL_PORT = 2525
     MAIL_USE_TLS = True
-    MAIL_USERNAME = "34bc6190402a3d"
-    MAIL_PASSWORD = "b9028b2cf79d6c"
+    MAIL_USERNAME = "e98985f3c3fda6"
+    MAIL_PASSWORD = "4228f6f29fcd56"
     MAIL_DEFAULT_SENDER = "noreply@cultureradar.com"
     MAIL_SUPPRESS_SEND = False
 
