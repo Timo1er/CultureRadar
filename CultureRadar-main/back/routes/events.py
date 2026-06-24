@@ -319,13 +319,3 @@ def list_users():
     users = User.query.all()
     return jsonify([{"id": u.id, "username": u.username, "is_confirmed": u.is_confirmed} for u in users])
 
-
-
-@events_bp.route("/delete-user/<email>", methods=["GET"])
-def delete_user(email):
-    user = User.query.filter_by(email=email).first()
-    if not user:
-        return jsonify({"msg": "Utilisateur non trouvé"})
-    db.session.delete(user)
-    db.session.commit()
-    return jsonify({"msg": f"Utilisateur {email} supprimé"})
